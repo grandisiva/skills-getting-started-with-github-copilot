@@ -61,6 +61,31 @@ def signup_for_activity(activity_name: str, email: str):
 
     # Get the specific activity
     activity = activities[activity_name]
+    #Add 2 more sports related activities, 2 more artistic activities, and 2 more intellectual activities.
+    
+    activities["Basketball Team"] = {
+        "description": "Play competitive basketball games",
+        "schedule": "Mondays and Wednesdays, 4:00 PM - 5:30 PM",
+        "max_participants": 15,
+        "participants": []
+    }
+    activities["Drama Club"] = {
+        "description": "Perform in school plays and theatrical productions",
+        "schedule": "Tuesdays and Thursdays, 3:00 PM - 4:30 PM",
+        "max_participants": 10,
+        "participants": []
+    }
+    activities["Debate Team"] = {
+        "description": "Participate in debate competitions and discussions",
+        "schedule": "Fridays, 2:30 PM - 4:00 PM",
+        "max_participants": 8,
+        "participants": []
+    }
+
+
+    # Validate student is not already signed up
+    if email in activity["participants"]:
+        raise HTTPException(status_code=400, detail="Student already signed up for this activity")
 
     # Add student
     activity["participants"].append(email)
